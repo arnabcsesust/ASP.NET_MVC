@@ -20,7 +20,7 @@ app.controller('HomeController', function ($scope) {
 });
 
 app.controller('SettingsController', function ($scope) {
-    $scope.person = {
-        name: 'Arnab'
-    };
+    $scope.updateSettings = function () {
+        console.log('updateSettings was called!');
+    }
 }); 

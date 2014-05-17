@@ -1,3 +1,58 @@
-﻿<h1>Settings</h1>
-<input name="name" ng-model="person.name" />
-{{ person.name }}
+﻿<div class="row">
+    <h1>Update your settings</h1>
+    <form name="settingsForm" ng-submit="updateSettings()">
+        <fieldset>
+            <legend>Update Settings</legend>
+
+            <div class="row">
+                <div class="small-8 columns">
+                    <label>Name</label>
+                    <input type="text" name="name" placeholder="Name" ng-model="settings.name"
+                           ng-minlength="3" ng-maxlength="20"
+                           ng-pattern="/^[a-zA-Z]+$/" required />
+
+                    <div ng-show="settingsForm.name.$dirty && settingsForm.name.$invalid">
+                        <div ng-show="settingsForm.name.$error.required">Your name is required.</div>
+                        <div ng-show="settingsForm.name.$error.minlength
+                             || settingsForm.name.$error.maxlength">
+                            Your name must contains letters between 3 and 20 characters.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-8 columns">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="Email" ng-model="settings.email" />
+                    <div ng-show="settingsForm.email.$dirty || settingsForm.email.$invalid">
+                        <span ng-show="settingsForm.email.$error.email">You must enter a valid email address</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="small-8 columns">
+                    <label>Age</label>
+                    <input type="number" name="age" placeholder="Age" ng-model="settings.age" min=3 max=100 />
+                    <div ng-show="settingsForm.age.$dirty || settingsForm.age.$invalid">
+                        <span ng-show="settingsForm.age.$error.number">You must enter only numbers</span>
+                        <span ng-show="settingsForm.age.$error.min ||
+                              settingsForm.age.$error.max">
+                            Your age must be between 3 to 100
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="push-9 small-3">
+                    <button type="submit" class="button" 
+                            ng-disabled="settingsForm.$dirty && settingsForm.$invalid">Update </button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+{{settings}}
